@@ -2,7 +2,9 @@ import React from 'react'
 
 const  IndexPage = () => {
   return (
-    <div> IndexPage</div>
+    <div>
+      <h1>pruebas</h1>
+    </div>
   )
 }
 
