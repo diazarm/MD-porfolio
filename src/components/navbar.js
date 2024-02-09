@@ -1,36 +1,33 @@
-'use client'
+"use client";
 
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, DocumentTextIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image';
-//import audioFile from '@/app/assets/sound/introMusic.mp3'
-import React, { useState } from 'react';
+import { Fragment } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import {
+  Bars3Icon,
+  DocumentTextIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import Image from "next/image";
+//import {handleDownload} from '@/components/downloadCv'
+import React, { useState } from "react";
+//import pdf from '@/pdf/MarceloADiazCV.pdf'
+//import { pdfjs } from "react-pdf";
+//import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+//import "react-pdf/dist/esm/Page/TextLayer.css";
+//pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const navigation = [
-  { name: 'Bienvenid@', href: '#', current: true },
-  { name: 'Hola!', href: '#', current: false },
-  { name: 'Proyectos', href: '#', current: false },
-  { name: 'Contacto', href: '#', current: false },
-]
+  { name: "Bienvenid@", href: "#", current: true },
+  { name: "Hola!", href: "#", current: false },
+  { name: "Proyectos", href: "#", current: false },
+  { name: "Contacto", href: "#", current: false },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function NavbarExample() {
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const audioRef = React.createRef();
-
-  const toggleAudio = () => {
-    if (isAudioPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsAudioPlaying(!isAudioPlaying);
-  };
-  
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -52,7 +49,7 @@ export default function NavbarExample() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Image
-                    src={require('@/app/assets/certificated/olaa.jpg')}
+                    src={require("@/app/assets/certificated/olaa.jpg")}
                     alt="MarceloCv"
                     className="h-8 w-8 rounded-full"
                   />
@@ -64,10 +61,12 @@ export default function NavbarExample() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
                       </a>
@@ -76,28 +75,28 @@ export default function NavbarExample() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
+                <a
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  onClick={toggleAudio}
+                  href="/pdf/MarceloADiazCV.pdf"
+                  target="_blank"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
                   <DocumentTextIcon className="h-6 w-6" aria-hidden="true" />
-                  {/* <audio ref={audioRef} src={require('../app/assets/sound/introMusic.mp3')} /> */}
-                </button>
+                </a>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button 
-                    className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img src="https://avatars.githubusercontent.com/u/93558180?v=4" 
-                      className="h-8 w-8 rounded-full"
-                      alt='Avatar'
-                      /> 
+                      <img
+                        src="https://avatars.githubusercontent.com/u/93558180?v=4"
+                        className="h-8 w-8 rounded-full"
+                        alt="Avatar"
+                      />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -114,7 +113,10 @@ export default function NavbarExample() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Your Profile
                           </a>
@@ -124,7 +126,10 @@ export default function NavbarExample() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Settings
                           </a>
@@ -134,7 +139,10 @@ export default function NavbarExample() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Sign out
                           </a>
@@ -155,10 +163,12 @@ export default function NavbarExample() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -168,5 +178,5 @@ export default function NavbarExample() {
         </>
       )}
     </Disclosure>
-  )
+  );
 }
