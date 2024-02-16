@@ -4,7 +4,6 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Bars } from '@heroicons/react/outline';
-import imagePerfil from "@../../../public/linkfoto.jpg"
 
 const navigation = [
   { name: 'Bienvenid@', href: '#', current: true },
@@ -22,11 +21,11 @@ export default function NavbarExample() {
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
+            <div className="relative flex h-16 items-center justify-between ">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -78,9 +77,10 @@ export default function NavbarExample() {
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <image src={imagePerfil}>
+                      <img src="https://avatars.githubusercontent.com/u/93558180?v=4" 
+                      className="h-8 w-8 rounded-full"
 
-                      </image>
+                      /> 
                       {/* <Image
                         src={imagePerfil}
                         alt=""

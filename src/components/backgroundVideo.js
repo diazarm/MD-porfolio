@@ -1,7 +1,12 @@
 "use client"
 import React from 'react';
+import NavbarExample from '@/components/navbar'
+
+
 const BackgroundVideo = () => {
   return (
+    <>
+    <NavbarExample/>
     <div className="relative h-screen ">
       {/* Video de fondo */}
       <video src={require('../../public/waves.mp4')} 
@@ -21,6 +26,7 @@ const BackgroundVideo = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
