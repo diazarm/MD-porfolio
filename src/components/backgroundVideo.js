@@ -4,7 +4,7 @@ const BackgroundVideo = () => {
   return (
     <div className="relative h-screen ">
       {/* Video de fondo */}
-      <video src={require('../../public/videoBackg.mp4')} 
+      <video src={require('../../public/waves.mp4')} 
       autoPlay
       muted
       loop
