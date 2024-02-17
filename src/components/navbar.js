@@ -2,8 +2,10 @@
 
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Bars } from '@heroicons/react/outline';
+import { Bars3Icon, DocumentTextIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image';
+//import audioFile from '@/app/assets/sound/introMusic.mp3'
+import React, { useState } from 'react';
 
 const navigation = [
   { name: 'Bienvenid@', href: '#', current: true },
@@ -17,6 +19,18 @@ function classNames(...classes) {
 }
 
 export default function NavbarExample() {
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const audioRef = React.createRef();
+
+  const toggleAudio = () => {
+    if (isAudioPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsAudioPlaying(!isAudioPlaying);
+  };
+  
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -37,10 +51,10 @@ export default function NavbarExample() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-10 w-auto"
-                    src="https://i.pinimg.com/originals/e5/63/08/e56308f543d79af355fcbb9829b285c7.gif"
-                    alt="Your Company"
+                  <Image
+                    src={require('@/app/assets/certificated/olaa.jpg')}
+                    alt="MarceloCv"
+                    className="h-8 w-8 rounded-full"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -65,28 +79,25 @@ export default function NavbarExample() {
                 <button
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  onClick={toggleAudio}
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  <DocumentTextIcon className="h-6 w-6" aria-hidden="true" />
+                  {/* <audio ref={audioRef} src={require('../app/assets/sound/introMusic.mp3')} /> */}
                 </button>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button 
+                    className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img src="https://avatars.githubusercontent.com/u/93558180?v=4" 
                       className="h-8 w-8 rounded-full"
-
+                      alt='Avatar'
                       /> 
-                      {/* <Image
-                        src={imagePerfil}
-                        alt=""
-                        className="h-8 w-8 rounded-full"
-                      /> */}
-
                     </Menu.Button>
                   </div>
                   <Transition
