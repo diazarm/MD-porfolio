@@ -10,8 +10,7 @@ const Type = () => {
             strings: [
               "Tango, asado, campo, guitarra, fogones: Mis raíces y la esencia de mi cultura.",
               "El fulbo, una buena milanga con fritas: Momentos de diversión y disfrute.",
-              "Pero cuando necesito concentración... Vuelvo a las bases y soy yo mismo",
-              "Pienso en el Mar... Mar y cielo, mi esencia.",
+              "Mar y cielo, mi esencia.",
               "Bienvenid@ a mi perfil, donde la pasión por el desarrollo web se encuentra con la autenticidad.",
               "¡Explora mi trabajo y descubre cómo la tecnología se encuentra con la pasión!"
             ],

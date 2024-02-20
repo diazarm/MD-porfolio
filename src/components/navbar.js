@@ -52,7 +52,7 @@ export default function NavbarExample() {
                     src={require("@/app/assets/certificated/olaa.jpg")}
                     alt="MarceloCv"
                     className="h-8 w-8 rounded-full"
-                  />
+                    />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -81,6 +81,8 @@ export default function NavbarExample() {
                   href="/pdf/MarceloADiazCV.pdf"
                   target="_blank"
                 >
+                    <p className="text-center">cv</p>
+
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
                   <DocumentTextIcon className="h-6 w-6" aria-hidden="true" />
@@ -113,38 +115,44 @@ export default function NavbarExample() {
                         {({ active }) => (
                           <a
                             href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Your Profile
+                            Cerfiticaciones
                           </a>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="https://github.com/diazarm"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Settings
+                            Github
                           </a>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="https://www.linkedin.com/in/marcelo-a-diaz-6a7926223/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Sign out
+                            Linkedin
                           </a>
                         )}
                       </Menu.Item>
