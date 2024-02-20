@@ -1,24 +1,17 @@
 "use client";
-
+import Link from 'next/link';
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  DocumentTextIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import {Bars3Icon, DocumentTextIcon, XMarkIcon}from"@heroicons/react/24/outline";
 import Image from "next/image";
-//import {handleDownload} from '@/components/downloadCv'
-import React, { useState } from "react";
-//import pdf from '@/pdf/MarceloADiazCV.pdf'
-//import { pdfjs } from "react-pdf";
-//import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-//import "react-pdf/dist/esm/Page/TextLayer.css";
-//pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import React, { useState, useRef } from "react";
+import Notification from "@/components/notificacion";
+import musica from "@/app/assets/sound/introMusic.mp3"
+
 
 const navigation = [
-  { name: "Bienvenid@", href: "#", current: true },
-  { name: "Hola!", href: "#", current: false },
+  { name: "Bienvenid@", href: "/bienvenidos", current: true },
+  { name: "Hola!", href: "/hola", current: false },
   { name: "Proyectos", href: "#", current: false },
   { name: "Contacto", href: "#", current: false },
 ];
@@ -28,6 +21,33 @@ function classNames(...classes) {
 }
 
 export default function NavbarExample() {
+  const [showNotification, setShowNotification] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowNotification(true);
+  };
+
+  const closeNotification = () => {
+    setShowNotification(false);
+  };
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const playPauseMusic = () => {
+    const audioElement = audioRef.current;
+
+    if (audioElement) {
+      if (isPlaying) {
+        audioElement.pause();
+      } else {
+        audioElement.play();
+      }
+
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -35,6 +55,7 @@ export default function NavbarExample() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
             <div className="relative flex h-16 items-center justify-between ">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <Notification />
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ">
                   <span className="absolute -inset-0.5" />
@@ -47,29 +68,32 @@ export default function NavbarExample() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <audio ref={audioRef} src={musica} />
+              <button onClick={() => {playPauseMusic();}} className="button-with-image">
                 <div className="flex flex-shrink-0 items-center">
                   <Image
                     src={require("@/app/assets/certificated/olaa.jpg")}
                     alt="MarceloCv"
                     className="h-8 w-8 rounded-full"
-                    />
+                  />
                 </div>
+                </button>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
+                      <Link legacyBehavior key={item.name} href={item.href}>
                       <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
+                        onClick={() => item.name === "Bienvenid@" && handleButtonClick()}
+                        className={`${
                           item.current
                             ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                        } rounded-md px-3 py-2 text-sm font-medium`}
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
                       </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -81,7 +105,7 @@ export default function NavbarExample() {
                   href="/pdf/MarceloADiazCV.pdf"
                   target="_blank"
                 >
-                    <p className="text-center">cv</p>
+                  <p className="text-center">cv</p>
 
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -181,6 +205,7 @@ export default function NavbarExample() {
                   {item.name}
                 </Disclosure.Button>
               ))}
+              {showNotification && <Notification onClose={closeNotification} />}
             </div>
           </Disclosure.Panel>
         </>
