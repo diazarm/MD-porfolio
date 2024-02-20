@@ -2,13 +2,13 @@
 import React from 'react'
 import NavbarExample from '@/components/navbar'
 
-const hola = () => {
+const proyectos = () => {
   return (
     <>
     <NavbarExample/>
-    <div>hola</div>
+    <div>proyectos</div>
     </>
   )
 }
 
-export default hola
+export default proyectos

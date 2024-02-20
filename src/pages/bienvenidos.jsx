@@ -1,14 +1,15 @@
 'use client'
 import React from 'react'
 import NavbarExample from '@/components/navbar'
-
-const hola = () => {
+const bienvenidos = () => {
   return (
     <>
+    <div className='overflow-hidden h-screen'>
     <NavbarExample/>
-    <div>hola</div>
+    </div>
+    <div>bienvenidos</div>
     </>
   )
 }
 
-export default hola
+export default bienvenidos

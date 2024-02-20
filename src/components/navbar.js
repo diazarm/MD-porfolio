@@ -5,15 +5,14 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {Bars3Icon, DocumentTextIcon, XMarkIcon}from"@heroicons/react/24/outline";
 import Image from "next/image";
 import React, { useState, useRef } from "react";
-import Notification from "@/components/notificacion";
 import musica from "@/app/assets/sound/introMusic.mp3"
 
 
 const navigation = [
   { name: "Bienvenid@", href: "/bienvenidos", current: true },
   { name: "Hola!", href: "/hola", current: false },
-  { name: "Proyectos", href: "#", current: false },
-  { name: "Contacto", href: "#", current: false },
+  { name: "Proyectos", href: "/proyectos", current: false },
+  { name: "Contacto", href: "/contacto", current: false },
 ];
 
 function classNames(...classes) {
@@ -21,16 +20,6 @@ function classNames(...classes) {
 }
 
 export default function NavbarExample() {
-  const [showNotification, setShowNotification] = useState(false);
-
-  const handleButtonClick = () => {
-    setShowNotification(true);
-  };
-
-  const closeNotification = () => {
-    setShowNotification(false);
-  };
-
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
@@ -55,7 +44,6 @@ export default function NavbarExample() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
             <div className="relative flex h-16 items-center justify-between ">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                <Notification />
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ">
                   <span className="absolute -inset-0.5" />
@@ -75,6 +63,7 @@ export default function NavbarExample() {
                     src={require("@/app/assets/certificated/olaa.jpg")}
                     alt="MarceloCv"
                     className="h-8 w-8 rounded-full"
+                    priority={true}
                   />
                 </div>
                 </button>
@@ -205,7 +194,7 @@ export default function NavbarExample() {
                   {item.name}
                 </Disclosure.Button>
               ))}
-              {showNotification && <Notification onClose={closeNotification} />}
+              {/* {showNotification && <Notification onClose={closeNotification} />} */}
             </div>
           </Disclosure.Panel>
         </>
